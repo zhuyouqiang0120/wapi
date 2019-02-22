@@ -1,0 +1,168 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+
+<head>
+	<title>嘉定文化云-接口测试-Java</title>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<meta http-equiv="Access-Control-Allow-Origin" content="*">
+	<meta name="page-view-size" content="1280*720"/>
+	<meta name="author" content="scumyang@gmail.com"/>
+	<meta name="keywords" content=""/>
+	<meta name="description" content=""/>
+	<link rel="shortcut icon" href="favicon.ico">
+</head>
+
+<style type="text/css">
+body
+{
+overflow:auto;padding:0px;margin:0px;color:#ccc;font:normal 18px Tahoma;
+background:#000000;
+-background-image:-moz-linear-gradient(top, #57a740, #468733);
+-background-image:-webkit-gradient(linear, right top, left bottom, color-stop(0, #113366), color-stop(1, #000000));
+-background-image:linear-gradient(to bottom, #113366 0%,#000000 100%);
+}
+
+img,button			{border:0px}
+
+a,a:link,a:visited	{text-decoration:none;font:normal 24px Tahoma;color:#fff}
+a:hover				{text-decoration:underline;color:#ff0}
+
+#eSA				{position:absolute;height:648px;left:64px;top:36px}
+
+li
+{
+font:normal 28px Tahoma;
+padding-left:20px;
+margin-bottom:20px;
+}
+
+h2
+{
+color:#f80;
+}
+
+label
+{
+font:normal 24px tahoma;
+}
+
+input
+{
+width:450px;
+height:40px;
+font:bold 22px Tahoma;
+color:#6af;
+background:#333;
+border:1px solid #555;
+border-radius:8px;
+padding:5px;
+}
+
+.inp_s
+{
+width:200px;
+}
+
+</style>
+
+<script type="text/javascript" src=""></script>
+<script type="text/javascript">
+$G =
+{
+	onPageLoad: function()
+	{
+		try
+		{
+			window.$ ? 0 : window.$ = function $( E ){ return document.getElementById( E ); }
+
+			document.onkeydown = function( E )
+			{
+				var E = E || event, K = E.keyCode;
+				switch( K )
+				{
+					//case 48: location.reload(); break;
+				}
+			}
+		}
+		catch( E )
+		{
+			alert( '$G.onPageLoad(): ' + E.message );
+		}
+	}
+
+	,onPageUnload: function()
+	{
+	}
+}
+
+</script>
+
+<body onload="$G.onPageLoad()" onunload="$G.onPageUnload()">
+
+<!--安全区-->
+<div id="eSA">
+<ul>
+	<li><h2>嘉定文化云 API Demo (Java)</h2></li>
+
+	<li><a href="/wapi/CultureCloud_JD/tpsActivity/activityTag" target="_blank">活动.获取标签列表 tpsActivity/activityTag</a>
+	<li><a href="javascript:open('/wapi/CultureCloud_JD/tpsActivity/activityIndex?activityType=' + $('tagId').value + '&pageIndex=0&pageNum=8')" target="_blank">活动.获取活动列表 tpsActivity/activityIndex</a>
+	<label for="tagId">标签ID：</label><input id="tagId" value="3265de62d4454fef8f5df0d903fded52"/>
+
+	<li><a href="javascript:open('/wapi/CultureCloud_JD/tpsActivity/activityDetail?activityId=' + $('activityId').value)" target="_blank">活动.获取活动详情 tpsActivity/activityDetail</a>
+	<label for="activityId">活动ID：</label><input id="activityId" value="4f746f6daf684a979387b06bbdf60e2d"/>
+	
+	<li><a href="javascript:open('/wapi/CultureCloud_JD/tpsActivity/activityOrder?userId=' + $('a').value + '&activityId=' + $('b').value + '&seatId=' + $('c').value + '&bookCount=' + $('d').value + '&orderMobileNum=' + $('e').value)" target="_blank">活动.活动预定 tpsActivity/activityOrder</a>
+	<label for="activityId">用户ID：</label><input id="a" value="c6957fa977e04ceea1142355df50873f"/>
+	<label for="activityId">活动ID：</label><input id="b" value="eec159cc10c44aeea3b413efe82d7347"/><br>
+	<label for="activityId">座位ID：</label><input id="c" value=""/>
+	<label for="activityId">票数ID：</label><input id="d" value="2"/>
+	<label for="activityId">手机号码：</label><input id="e" value="15000209901"/>
+	<hr/>
+
+	<li><a href="javascript:open('/wapi/CultureCloud_JD/user/getRegisterCaptcha?userMobile=' + $('reg_mobile').value)" target="_blank">用户.获取注册验证码 user/getRegisterCaptcha</a>
+	<label for="reg_mobile">手机号：</label><input id="reg_mobile" class="inp_s" value=""/>
+
+	<li><a href="/wapi/CultureCloud_JD/user/register" target="_blank">用户.注册 user/register</a>
+
+	<hr/>
+	<li><a href="javascript:open('/wapi/CultureCloud_JD/user/getLoginCaptcha?userMobile=' + $('login_mobile').value)" target="_blank">用户.获取登录验证码 user/getLoginCaptcha</a>
+	<label for="login_mobile">手机号：</label><input id="login_mobile" class="inp_s" value="15951878624"/>
+
+	<li><a href="javascript:open('/wapi/CultureCloud_JD/user/login?userMobile=' + $('login_mobile').value + '&captcha=' + $('login_captcha').value)" target="_blank">用户.登录 user/login</a>
+	<label for="login_captcha">短信验证码：</label><input id="login_captcha" class="inp_s" value=""/>
+	
+	<hr/>
+	<li><a href="/wapi/CultureCloud_JD/pic/indexPic" target="_blank">首页.背景图片|文化预告 pic/indexPic</a>
+	
+	<hr/>
+	<li><a href="javascript:open('/wapi/CultureCloud_JD/sub/subDetail?appsbjID=' + $('siteId1').value+ '&pageIndex=0&pageNum=6')" target="_blank">推荐.精彩演出 sub/subDetail</a>
+	<label for="tagId">栏目ID：</label><input id="siteId1" value="ff8080814d64c8bf014dadc17354007a"/>
+	
+	<li><a href="javascript:open('/wapi/CultureCloud_JD/sub/subDetail?appsbjID=' + $('siteId2').value+ '&pageIndex=0&pageNum=6')" target="_blank">推荐.精品讲座 sub/subDetail</a>
+	<label for="tagId">栏目ID：</label><input id="siteId2" value="ff8080814d64c8bf014dadc2d9a9007c"/>
+	
+	<li><a href="javascript:open('/wapi/CultureCloud_JD/sub/subDetail?appsbjID=' + $('siteId3').value+ '&pageIndex=0&pageNum=6')" target="_blank">推荐.特色展览 sub/subDetail</a>
+	<label for="tagId">栏目ID：</label><input id="siteId3" value="ff8080814d64c8bf014dadc35b75007e"/>
+	
+	<li><a href="javascript:open('/wapi/CultureCloud_JD/sub/subDetail?appsbjID=' + $('siteId4').value+ '&pageIndex=0&pageNum=6')" target="_blank">推荐.纪录嘉定 sub/subDetail</a>
+	<label for="tagId">栏目ID：</label><input id="siteId4" value="ff8080814d64c8bf014dadc3b3a80080"/>
+	<hr/>
+	
+	<li><a href="javascript:open('/wapi/CultureCloud_JD/sub/SZZGsubs?SZZGID=' + $('SZZGID').value)" target="_blank">数字展馆.栏目 sub/SZZGsubs</a>
+	<label for="tagId">栏目ID：</label><input id="SZZGID" value="ff80808153ca7a6c0153d0c684a0008e"/>
+	
+	<li><a href="javascript:open('/wapi/CultureCloud_JD/sub/SZZGsubDetail?appsbjID=' + $('siteId5').value+ '&pageIndex=0&pageNum=6')" target="_blank">数字展馆.列表 sub/SZZGsubDetail</a>
+	<label for="tagId">栏目ID：</label><input id="siteId5" value="ff80808153ca7a6c0153d111a12400cc"/>
+	<hr/>
+	
+	
+	<li><a href="javascript:open('/wapi/CultureCloud_JD/play/Play?offID=' + $('offID').value)" target="_blank">推荐.播放 play/Play</a>
+	<label for="tagId">OFFID：</label><input id="offID" value="2951036"/>
+	<li><a href="javascript:open('/wapi/CultureCloud_JD/play/getParam?offID=' + $('offID').value)" target="_blank">推荐.数据 play/getParam</a>
+	<label for="tagId">OFFID：</label><input id="offID" value="2951036"/>
+	<hr/>
+</ul>
+</div>
+
+</body>
+</html>

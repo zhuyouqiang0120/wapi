@@ -1,0 +1,38 @@
+{
+    "elapsed": 7,
+    "responseJSON": {
+        "result": {
+            "bg_pic": [
+                {
+                    "id": "ff80808153ca7a6c0153d074b2230013",
+                    "bgname": "bg首页",
+                    "bgurl": "Culture.index.images/home-bkg.jpg"
+                }
+            ],
+            "sub_pic": [
+                {
+                    "subname": "精品讲座",
+                    "suburl": "Culture.index.images/recomm-1.jpg",
+                    "subid": "ff80808153ca7a6c0153d0c320e30084"
+                },
+                {
+                    "subname": "精彩演出",
+                    "suburl": "Culture.index.images/recomm-2.jpg",
+                    "subid": "ff80808153ca7a6c0153d0c4aa500086"
+                },
+                {
+                    "subname": "特色展览",
+                    "suburl": "Culture.index.images/recomm-3.jpg",
+                    "subid": "ff80808153ca7a6c0153d0c5226b0088"
+                },
+                {
+                    "subname": "纪录嘉定",
+                    "suburl": "Culture.index.images/recomm-4.jpg",
+                    "subid": "ff80808153ca7a6c0153d0c578f6008a"
+                }
+            ]
+        }
+    },
+    "msg": "",
+    "success": "1"
+}

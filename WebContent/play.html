@@ -1,0 +1,190 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+<title>节目播放页</title>
+<script src="js/lynx.zFocus.js" type="text/javascript"></script>
+<script type="text/javascript">
+	//var vod = "v2.0";
+	var vod = "v3.0";
+	var playurl = "";
+
+	var index = "";
+	var id = "";
+	var ServiceName = "";
+	var ServiceType = "";
+	var Preview = "0";
+	var backstep = "1";
+
+	var passthru_ip = "10.27.65.50";
+	var mod_app_ip = "10.27.65.50";
+	var srm_ip = "10.27.65.8";
+	var poster_server_ip = "10.27.65.50";
+	var lsc_comm_proxy_ip = "10.27.65.50";
+	var session_gateway_ip = "10.27.65.50";
+	var freq1 = "562000";
+	var sym_rate1 = "6900";
+	var qam_mode1 = "64";
+	var freq2 = "834000";
+	var sym_rate2 = "6900";
+	var qam_mode2 = "64";
+	var ApplicationType = "vod";
+	var run_time = "";
+	var content_name = "";
+	var protocol_type = "rtsp";
+	var rtsp_vendor = "";
+	var rtsp = "10.27.63.101:13819";
+	var streamTransMode = "ip_stream";
+	var category = "";
+	var provider = "";
+	var ServiceCode = "";
+
+	var offid = getQueryString("offID");
+
+	lynx.ajax({
+		type : 'GET',
+		url : '/wapi/CultureCloud_JD/play/getParam?offID=' + offid,
+		success : function(data) {
+			if (typeof data === 'string') {
+				data = eval('(' + data + ')');
+				if(data.responseJSON.result.length != 0){
+					index = data.responseJSON.result[0].OFF_ID;
+					id = data.responseJSON.result[0].OFF_ID;
+					ServiceName = data.responseJSON.result[0].SRV_NAME;
+					ServiceType = data.responseJSON.result[0].SRV_TYPE;
+					run_time = data.responseJSON.result[0].AST_RUNTIME;
+					content_name = data.responseJSON.result[0].AST_CONTENTNAME;
+					titleName = data.responseJSON.result[0].AST_TITLE;
+					ServiceCode = data.responseJSON.result[0].SRV_CODE;
+					provider = data.responseJSON.result[0].AMS_PROVIDER;
+					category = data.responseJSON.result[0].AST_GENRE;
+					
+					document.getElementsByTagName("vod")[0].setAttribute("index",index);
+					document.getElementsByTagName("vod")[0].setAttribute("id",id);
+					document.getElementsByTagName("vod")[0].setAttribute("ServiceName",ServiceName);
+					document.getElementsByTagName("vod")[0].setAttribute("ServiceType",ServiceType);
+					document.getElementsByTagName("vodpara")[13].setAttribute("value",run_time);
+					document.getElementsByTagName("vodpara")[14].setAttribute("value",content_name);
+					
+
+					document.getElementsByTagName("vodpara")[19].setAttribute("value","titleName=" + titleName + ":serviceCode=" + ServiceCode + ":purchaseType=2:provider=" + provider + ":category=" + category + "&");
+/*
+					if (vod == "v2.0") {
+						rtsp_vendor = "OCN.RTSP";
+						playurl = "index=" + index + "&id=" + index
+								+ "&servicename=" + ServiceName + "&servicetype="
+								+ ServiceType + "&preview=" + Preview
+								+ "&backstep=" + backstep + "&passthru_ip="
+								+ passthru_ip + "&mod_app_ip=" + mod_app_ip
+								+ "&srm_ip=" + srm_ip + "&poster_server_ip="
+								+ poster_server_ip + "&lsc_comm_proxy_ip="
+								+ lsc_comm_proxy_ip + "&session_gateway_ip="
+								+ session_gateway_ip + "&freq1=" + freq1
+								+ "&sym_rate1=" + sym_rate1 + "&qam_mode1="
+								+ qam_mode1 + "&freq2=" + freq2 + "&sym_rate2="
+								+ sym_rate2 + "&qam_mode2=" + qam_mode2
+								+ "&ApplicationType=" + ApplicationType
+								+ "&run_time=" + run_time + "&content_name="
+								+ content_name + "&protocol_type=" + protocol_type
+								+ "&rtsp=" + rtsp + "&rtsp_vendor=" + rtsp_vendor
+								+ "&streamTransMode=" + streamTransMode
+								+ "&category=" + category + "&provider=" + provider
+								+ "&ServiceCode=" + ServiceCode + "&";
+					} else if (vod == "v3.0") {
+						rtsp_vendor = "OCN RTSP V3.0";
+						playurl = "index=" + index + "&id=" + index
+								+ "&servicename=" + ServiceName + "&servicetype="
+								+ ServiceType + "&preview=" + Preview
+								+ "&backstep=" + backstep + "&passthru_ip="
+								+ passthru_ip + "&mod_app_ip=" + mod_app_ip
+								+ "&srm_ip=" + srm_ip + "&poster_server_ip="
+								+ poster_server_ip + "&lsc_comm_proxy_ip="
+								+ lsc_comm_proxy_ip + "&session_gateway_ip="
+								+ session_gateway_ip + "&freq1=" + freq1
+								+ "&sym_rate1=" + sym_rate1 + "&qam_mode1="
+								+ qam_mode1 + "&freq2=" + freq2 + "&sym_rate2="
+								+ sym_rate2 + "&qam_mode2=" + qam_mode2
+								+ "&ApplicationType=" + ApplicationType
+								+ "&run_time=" + run_time + "&content_name="
+								+ content_name + "&protocol_type=" + protocol_type
+								+ "&rtsp=" + rtsp + "&rtsp_vendor=" + rtsp_vendor
+								+ "&streamTransMode=" + streamTransMode
+								+ "&Authorization=titleName=" + titleName
+								+ ":serviceCode=" + ServiceCode
+								+ ":purchaseType=2:provider=" + provider
+								+ ":category=" + category + "&";
+					}
+					play(playurl);
+	*/
+				}else{
+					alert("获取资源失败！");
+				}
+				
+
+			}
+		},
+		error : function() {
+			alert("播放失败");
+		}
+	});
+
+	function play(playurl) {
+		try {
+			//console.log(playurl);
+			jShow.play9dayEpgEvent(playurl);
+			setTimeout(function() {
+				history.back(-1);
+			}, 500);
+
+		} catch (e) {
+		}
+	}
+	
+	function getQueryString(name) {
+		var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+		var r = window.location.search.substr(1).match(reg);
+		if (r != null)
+			return unescape(r[2]);
+		return null;
+	}
+</script>
+</head>
+<body>
+<vod index="1032" id="1032" ServiceName="FOD-TV" ServiceType="SVOD" Preview="0" backstep="1"> 
+
+	<vodpara name="passthru_ip" value="10.27.65.50" /> 
+	<vodpara name="mod_app_ip" value="10.27.65.50" /> 
+	<vodpara name="srm_ip" value="10.27.65.8" /> 
+	<vodpara name="poster_server_ip" value="10.27.65.50" /> 
+	<vodpara name="lsc_comm_proxy_ip" value="10.27.65.50" /> 
+	<vodpara name="session_gateway_ip" value="10.27.65.50" /> 
+
+	<vodpara name="freq1" value="562000" />
+	<vodpara name="sym_rate1" value="6900" />
+	<vodpara name="qam_mode1" value="64" />
+	<vodpara name="freq2" value="834000" />
+	<vodpara name="sym_rate2" value="6900" />
+	<vodpara name="qam_mode2" value="64" />
+	
+	<vodpara name="ApplicationType" value="vod" />
+	<vodpara name="run_time" value="02:25:07" />
+	<vodpara name="content_name" value="9root.ts"/>
+
+	<vodpara name="protocol_type" value="rtsp" />
+	<vodpara name="rtsp" value="10.27.63.101:13819" />
+
+	<vodpara name="streamTransMode" value="ip_stream" />
+
+	<vodpara name="rtsp_vendor" value="OCN RTSP V3.0" />
+	<vodpara name="Authorization" value="titleName=BellTest:serviceCode=00003:purchaseType=2:provider=SiTV:category=Movie201105new" />
+	
+	<!--
+<vodpara name="rtsp_vendor" value="OCN.RTSP" />
+	<vodpara name="category" value="Movie201105new" />
+	<vodpara name="provider" value="SiTV" />
+	<vodpara name="ServiceCode" value="00003" />
+	
+	-->
+	
+</vod>
+</body>
+</html>

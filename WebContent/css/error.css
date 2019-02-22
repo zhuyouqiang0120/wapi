@@ -1,0 +1,18 @@
+/*!
+ *
+ * Copyright 2011-2015 NGBLAB CO., LTD
+ *
+ */
+
+/*-- error
+====================================================== */
+body{margin:0px; padding: 0px; font-family: "微软雅黑"; font-size: 20px;}
+.container{width:1280px; height: 720px; overflow: hidden; background-color: #e6e6e6;}
+.pos-abs{display:block; position: absolute;}
+
+.error{background-color: #272822;}
+.error .title{width: 1280px; text-align:center; top:50px;}
+.error .title span{color: #f8f8f2; font-size: 60px;}
+
+.error .pre{top:260px; left:50px;}
+.error .pre p{color: #428bca; font-size: 20px; margin-bottom: 10px;}
